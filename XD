@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Para Daira 💖</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:linear-gradient(135deg,#ffd6eb,#fff)}
+header{padding:70px 20px;text-align:center;background:#ff4f9a;color:#fff}
+section{max-width:900px;margin:24px auto;background:#fff;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+button{background:#ff4f9a;color:#fff;border:none;padding:12px 18px;border-radius:12px;cursor:pointer}
+#gift,#bear{font-size:90px;cursor:pointer;text-align:center}
+.hidden{display:none}
+.note{background:#fff0f7;padding:14px;border-radius:10px;margin-top:12px}
+.float{position:fixed;font-size:28px;animation:up linear infinite;opacity:.8}
+@keyframes up{from{transform:translateY(105vh)}to{transform:translateY(-20vh)}}
+</style>
+</head>
+<body>
+<div class=float style="left:5%;animation-duration:11s">💖</div>
+<div class=float style="left:25%;animation-duration:8s">🎈</div>
+<div class=float style="left:55%;animation-duration:14s">✨</div>
+<div class=float style="left:80%;animation-duration:10s">🌸</div>
+
+<header>
+<h1>🎂 Feliz Cumpleaños Daira 🎂</h1>
+<p>Una pequeña aventura creada especialmente para ti.</p>
+</header>
+
+<section style="text-align:center">
+<h2>🎁 Abre el regalo</h2>
+<div id="gift" onclick="openGift()">🎁</div>
+<p id="giftText">Tócalo para descubrir la sorpresa.</p>
+</section>
+
+<section style="text-align:center">
+<h2>🧸 Rompe la piñata</h2>
+<div id="bear" onclick="hit()">🧸</div>
+<p id="hits">Golpes: 0/20</p>
+</section>
+
+<section>
+<h2>📖 Libro de recuerdos</h2>
+<div class="note" id="page">Pulsa el botón para leer.</div><br>
+<button onclick="nextPage()">➡️ Pasar página</button>
+</section>
+
+<section>
+<h2>💌 Mensajes secretos</h2>
+<button onclick="show(0)">Mensaje 1</button>
+<button onclick="show(1)">Mensaje 2</button>
+<button onclick="show(2)">Mensaje 3</button>
+<div class="note" id="secret"></div>
+</section>
+
+<section>
+<h2>🏆 Logros</h2>
+<ul id="ach">
+<li>⬜ Abrir el regalo</li>
+<li>⬜ Romper la piñata</li>
+<li>⬜ Leer todas las páginas</li>
+</ul>
+</section>
+
+<section>
+<h2>❤️ Carta final</h2>
+<button onclick="finalLetter()">Abrir carta</button>
+<div id="letter" class="hidden note">
+<h3>Para una gran amiga</h3>
+<p>Daira:</p>
+<p>Quería hacerte algo diferente. No solo decir "feliz cumpleaños", sino regalarte un pequeño lugar en Internet donde cada clic recuerde lo mucho que valoro tu amistad.</p>
+<p>Gracias por las risas, las conversaciones, los momentos buenos y también por estar cuando las cosas no eran tan fáciles. Personas como tú hacen que los días normales se vuelvan recuerdos especiales.</p>
+<p>Espero que este nuevo año de vida te traiga paz, muchas oportunidades, metas cumplidas y personas que te quieran tanto como mereces. Nunca dejes de ser auténtica, porque esa forma de ser es la que hace que quienes te conocen te aprecien de verdad.</p>
+<p>Ojalá cada vez que vuelvas a esta página sonrías un poco y recuerdes que alguien dedicó tiempo para hacer algo único pensando en ti. Feliz cumpleaños. 💖🎂</p>
+</div>
+</section>
+
+<script>
+let opened=false,broken=false,p=0,c=0;
+const pages=[
+"Hoy celebramos a alguien muy especial. 🎂",
+"Gracias por ser una amiga increíble. 💖",
+"Que nunca te falten sonrisas. ✨",
+"Persigue todos tus sueños. 🌸",
+"Fin del libro. ¡Disfruta tu día! 🎉"];
+function update(){
+let l=document.querySelectorAll("#ach li");
+l[0].textContent=(opened?"✅":"⬜")+" Abrir el regalo";
+l[1].textContent=(broken?"✅":"⬜")+" Romper la piñata";
+l[2].textContent=(p>=pages.length?"✅":"⬜")+" Leer todas las páginas";
+}
+function openGift(){opened=true;gift.textContent="🎉";giftText.textContent="¡Feliz cumpleaños!";update();}
+function hit(){if(broken)return;c++;hits.textContent="Golpes: "+c+"/20";if(c>=20){bear.textContent="💥🍬";broken=true;alert("¡Piñata rota!");update();}}
+function nextPage(){if(p<pages.length){page.textContent=pages[p++];}update();}
+const msgs=["Nunca dejes de sonreír 😊","Hoy el mundo celebra que existes 🌎","Gracias por tu amistad ❤️"];
+function show(i){secret.textContent=msgs[i];}
+function finalLetter(){letter.classList.remove("hidden");}
+</script>
+</body>
+</html>
